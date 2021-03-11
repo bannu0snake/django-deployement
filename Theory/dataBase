@@ -1,0 +1,48 @@
+1. install pip install psycopg2-binary and pip install psycopg2 in your virtual env.
+2. now goto settings.py in btre and then edit data bases as follows
+            DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.postgresql',
+                'NAME': 'btreDB',
+                'USER': 'postgres',
+                'PASSWORD': 'Bannu@123',
+                'HOST': 'localhost'
+            }
+        }
+3. to migrate tables to the data base run cammand { python manage.py migrate  }
+4. now create objects as kind of tables in model.py
+5. After creating the models in models.py to make migrations you need to install a dependency called pillow
+6. now run the command "python manage.py makemigrations" to make migrations
+7. now again migrate the created classes
+8. create user authentication by using command "python manage.py createsuperuser  "
+9. to register your classes in the admin page server update the admin page by follwing listing
+    from .models import {Realtor = name of the class}
+    # Register your models here.
+    admin.site.register(Realtor)
+10. setup media folder update the btre settings page.
+# Media folder settings
+    MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+    MEDIA_URL = '/media/'
+
+11. now update the urls.py file by adding line { 
+    //NEED TO IMPORT
+    from django.conf import settings
+    from django.conf.urls.static import static
+    // ADD THE BELOW line
+    + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+ }
+12. to add more display contents add the following class and update the register.
+    class ListingAdmin(admin.ModelAdmin):
+        list_display = ('id', 'title', 'is_published', 'list_date', 'realtor')
+    admin.site.register(Listing)
+13. you can also add display links by using
+    list_display_links = ('id', 'title')
+14. you can also use features like list_editable, list_filter and search_feilds also list_per_page indeed.
+//HOW TO PULL DATA FROM DATA BASE\
+15. first import object class to to the views.py file
+16. then use the below syntax to send the data to the html fileand also send the dictnory through render.
+    listings = Listing.objects.all()
+
+    context = {
+        'listings' : listings
+    }

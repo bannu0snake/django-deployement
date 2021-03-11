@@ -1,0 +1,21 @@
+1. change to required envirenment cmd : workon test {test = envirenment name}
+2. create django project cmd : django-admin startproject {btre = project name}
+3. run server cmd : python manage.py runserver
+4. create django app cmd : python manage.py startapp {pages = app anme}
+
+// changes to be done after creating app
+
+1. create urls.py file for pages app
+2. import files by using following lines.
+    *    from django.urls import path
+    *    from . import views
+3. then initialize urlpatterns
+4. then update the veiws.py file with required functions
+
+
+//changes in btre
+1. add app in settings.py
+    'pages.apps.PagesConfig',
+2. update urlpatterns in urls.py by adding include.
+    path('',include('pages.urls')),
+

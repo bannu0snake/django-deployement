@@ -1,0 +1,32 @@
+// SET THE LOCATION OF THE TEMPLATE FOR django
+1. in btre  settings.py update TEMPLATE DIR.
+    'DIRS': [os.path.join(BASE_DIR,'templates')]
+2. now create a templates folder and then add the html pages in it.
+3. update veiws.py by setting the correct path of templates(make sure that you have used render method)
+
+// setting base html
+1. first create  base.html outside pages and inside templates
+2. craete boiler plate  code and then add the following blocks in requried places
+    {% extends 'base.html'%} // requried in child files only.
+    {% block content%}
+        //content
+        
+    {%endblock%}
+
+// SETTING UP STATIC folder
+1. craete a static folder inside "btre" folder
+2. then import all the folders which are purly static in the static folder.
+3. add the following lines in the settings.py in btre.
+    STATIC_URL = '/static/'
+    STATIC_ROOT = os.path.join(BASE_DIR,'static') //creates the static folder for accessing the files in BASE_DIR.
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR,'btre/static')
+    ]// tells the computer , where to look for static files 
+
+4. to collect all the static files now run the cmd : python manage.py collectstatic
+5. use {% load static %} then keep the {% static '//path' %} where ever you find a static file path.
+6. make sure your path is correct.
+7. you can also use partials by using the following line in the respective posintion in base html file
+    {% include 'partials/_topbar.html' %} //partials = folder name AND _topbar.html = partial file name
+8. use {% url 'index' %} in href place
+    // name = index (we get this urls.py file)
